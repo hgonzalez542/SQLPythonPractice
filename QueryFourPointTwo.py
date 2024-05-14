@@ -1,8 +1,8 @@
 import mysql.connector
 
-# Function to execute FBI query
+# ** Assingment13 FBI query
 def fbi_query(cursor):
-    actor_name = input("Enter actor's name: ")
+    actor_name = input("Enter actor's name: ") # Once deciding on what option you want ...
     query = f"""
         SELECT f.title AS film_title, r.rental_date, CONCAT(c.first_name, ' ', c.last_name) AS customer_name, 
                a.address, a.phone, ci.city, a.postal_code AS zip_code, CONCAT(s.first_name, ' ', s.last_name) AS clerk_name,
@@ -19,7 +19,7 @@ def fbi_query(cursor):
         JOIN store st ON s.store_id = st.store_id
         WHERE CONCAT(ac.first_name, ' ', ac.last_name) = '{actor_name}';
     """
-    cursor.execute(query)
+    cursor.execute(query) # This will execute the query based off of the info provided
     result = cursor.fetchall()
     if result:
         print("Rentals featuring", actor_name + ":")
@@ -37,7 +37,7 @@ def fbi_query(cursor):
     else:
         print("No rentals found for", actor_name)
 
-# Function to execute query 1
+# calling query 1
 def query_1(cursor):
     actor_name = input("Enter actor's name (e.g., 'Tom Hanks'): ")
     query = f"""
@@ -58,7 +58,7 @@ def query_1(cursor):
     else:
         print("No films found for", actor_name)
 
-# Function to execute query 2
+# calling query 2
 def query_2(cursor):
     category_name = input("Enter category name (e.g., 'Action'): ")
     query = f"""
@@ -82,7 +82,7 @@ def query_2(cursor):
     else:
         print("No films found in category", category_name)
 
-# Function to execute query 3
+# calling query 3
 def query_3(cursor):
     rental_date = input("Enter rental date (YYYY-MM-DD): ")
     query = f"""
@@ -109,7 +109,7 @@ def query_3(cursor):
         print("No rentals found for", rental_date)
 
 
-# Main function
+# main function for sql connector
 def main():
     try:
         # Connect to MySQL server
